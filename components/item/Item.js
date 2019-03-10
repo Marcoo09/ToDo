@@ -3,26 +3,53 @@ import { Text, View, StyleSheet} from 'react-native';
 import CheckBox from '../checkBox/CheckBox';
 
 const styles = StyleSheet.create({
-    bigBlue: {
-      color: 'blue',
-      fontWeight: 'bold',
-      fontSize: 30,
+    commonText:{
+      fontFamily: 'SourceSansPro-Regular',
     },
-    red: {
-      color: 'red',
+    primaryText: {
+      color: 'black',
+      fontSize: 16,
+      lineHeight: 24,
+    },
+    secondaryText: {
+      color: '#959595',
+      fontSize: 14,
+      lineHeight: 20,
+    },
+    itemContainer:{
+      padding:16,
+      flexDirection: 'row',
+      borderWidth: 1,
+      borderColor: '#f0f0f0',
+    },
+    itemContainerHover: {
+      borderWidth: 1,
+      borderColor: 'blue',
+    },
+    textContainer: {
+      flexDirection: 'column',
     },
   });
 
 class Item extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      hovered: false,
+    };
+  }
 
+  handlingHover(){
+    this.setState({hovered: true});
+  }
   render() {
     return (        
-      <View style = {{padding:16, flexDirection: 'row'}}>
-        <View style = {{flexDirection: 'column'}}> 
-            <Text>{this.props['first-description']}</Text>
-            <Text>{this.props['second-description']}</Text>
+      <View style = {this.state.hovered ? styles.itemContainerHover: styles.itemContainer}>
+        <View style = {styles.textContainer}> 
+            <Text style = {[styles.commonText, styles.primaryText]} >{this.props['first-description']}</Text>
+            <Text style = {[styles.commonText, styles.secondaryText]} >{this.props['second-description']}</Text>
         </ View>
-        <CheckBox />
+        <CheckBox checked = {this.props['status']}/>
       </View>
     );
   }

@@ -34,7 +34,7 @@ var data = [
     {
         'first-description': 'Description',
         'second-description': 'Second Description',
-        'status': false
+        'status': true
     }, 
     {
         'first-description': 'Description',
@@ -52,7 +52,7 @@ class Home extends Component {
             data.map((item,index,arr) => <Item {...item}/>)
         }
         </ScrollView>
-        <Button />
+        <Button text = "CLEAR ALL DONE"/>
       </View>
     );
   }
